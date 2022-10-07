@@ -76,14 +76,14 @@ export default {
         value => !value || 'Required.',
         value => value > 0 || 'Min 1',
       ],
-      form:{
+      form: {
         countObjects: null,
         countWindows: null
       }
     }
   },
-  methods:{
-    sendObjects(){
+  methods: {
+    sendObjects() {
       this.$emit('sendObjects', this.form)
       this.dialog = false
     }

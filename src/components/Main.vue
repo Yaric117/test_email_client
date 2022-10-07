@@ -40,24 +40,23 @@ export default {
       ]
     }
   },
-  computed:{
-    objects(){
+  computed: {
+    objects() {
       return this.$store.getters.objects
     }
   },
   mounted() {
     this.updateObjects()
-
   },
-  methods:{
-    send(data){
+  methods: {
+    send(data) {
       this.sendData(data,'create','Post', (data) => {
         this.updateObjects()
         console.log(data)
       })
     },
     updateObjects() {
-      this.getData('windows', 'GET', (data) => {this.$store.dispatch('setObjects', data)})
+      this.getData('windows', 'GET', (data) => { this.$store.dispatch('setObjects', data) })
     }
   }
 }
