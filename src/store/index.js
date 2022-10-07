@@ -5,10 +5,33 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    appName: process.env.VUE_APP_NAME,
+    server: { url: `${process.env.VUE_APP_BACKEND_PROTOCOL}://${process.env.VUE_APP_BACKEND_HOST}` },
+    preloader: false,
+    language: 'en',
+    token: process.env.VUE_APP_API_KEY
   },
   getters: {
+    appName: state => {
+      return state.appName
+    },
+    server: state => {
+      return state.server.url
+    },
+    preloader: state => {
+      return state.preloader
+    },
+    language: state => {
+      return state.language
+    },
+    token: state => {
+      return state.token
+    }
   },
   mutations: {
+    setPreloader (state, payload) {
+      state.preloader = payload
+    },
   },
   actions: {
   },
