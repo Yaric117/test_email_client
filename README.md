@@ -1,5 +1,10 @@
 # client
 
+## Project setup with docker
+```
+docker-compose up -d --build
+```
+
 ## Project setup
 ```
 npm install
