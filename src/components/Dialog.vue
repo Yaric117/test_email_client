@@ -33,7 +33,7 @@
               <v-btn
                   dark
                   text
-                  @click="dialog = false"
+                  @click="sendObjects"
               >
                 Save
               </v-btn>
@@ -47,13 +47,13 @@
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>Objects count</v-list-item-title>
-                <v-text-field :rules="rules" type="number"></v-text-field>
+                <v-text-field v-model="form.countObjects" :rules="rules" type="number"></v-text-field>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>Object`s windows count</v-list-item-title>
-                <v-text-field :rules="rules" type="number"></v-text-field>
+                <v-text-field v-model="form.countWindows" :rules="rules" type="number"></v-text-field>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -76,8 +76,18 @@ export default {
         value => !value || 'Required.',
         value => value > 0 || 'Min 1',
       ],
+      form:{
+        countObjects: null,
+        countWindows: null
+      }
     }
   },
+  methods:{
+    sendObjects(){
+      this.$emit('sendObjects', this.form)
+      this.dialog = false
+    }
+  }
 }
 </script>
 

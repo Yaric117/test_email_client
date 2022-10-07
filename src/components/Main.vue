@@ -1,9 +1,9 @@
 <template>
   <div>
-    <main-dialog></main-dialog>
+    <main-dialog @sendObjects="send"></main-dialog>
     <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="objects"
         item-key="id"
         sort-by="id"
         group-by="object.name"
@@ -37,14 +37,28 @@ export default {
           groupable: false,
         },
         { text: 'Object', value: 'object.name', align: 'right' },
-      ],
-      desserts: [],
+      ]
+    }
+  },
+  computed:{
+    objects(){
+      return this.$store.getters.objects
     }
   },
   mounted() {
-    //this.sendData({'countObjects': '3', 'countWindows': '2'},'create','Post', (data)=>console.log(data))
-    this.getData('windows', 'GET', (data) => {this.desserts = data})
+    this.updateObjects()
 
+  },
+  methods:{
+    send(data){
+      this.sendData(data,'create','Post', (data) => {
+        this.updateObjects()
+        console.log(data)
+      })
+    },
+    updateObjects() {
+      this.getData('windows', 'GET', (data) => {this.$store.dispatch('setObjects', data)})
+    }
   }
 }
 </script>
